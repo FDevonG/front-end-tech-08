@@ -1,0 +1,43 @@
+.modal{
+    width: 100vw;
+    height:100vh;
+    background-color: rgba($black, 0);
+    position: absolute;
+    top: 0;
+    left: -100%;
+    @include flexy($just:center, $ali: center);
+    transition: transform, background-color;
+    transition-duration: $transition-duration;
+    transition-timing-function: ease-out;
+
+    &:focus{
+        transform: translate(100%, 0);
+        background-color: rgba($black, .5);
+    }
+
+    &__container{
+        position: relative;
+        background-color: white;
+        padding: 40px;
+        border-radius: $border-radius-corners;
+        @include border($grey);
+
+        &__info{
+            @include flexy($dir: column, $just: center, $ali: center);
+        }
+
+        &__close {
+            cursor: pointer;
+            position: absolute;
+            right: $gutter;
+            top: $gutter;
+            right: $gutter;
+        }
+    }
+
+    & h2,
+    & p,
+    & hr {
+        margin-top: $gutter;
+    }
+}

@@ -1,0 +1,23 @@
+body{
+    font-family: $font-family;
+    font-weight: map-get($font-weights, 'xlight');
+}
+
+h1,
+h2 {
+    margin:0;
+    font-weight: map-get($font-weights, 'regular');
+}
+
+h1 {
+    font-size: px-to-rem(20px);
+    flex: 1;
+}
+
+h2 {
+    font-size: px-to-rem(18px);
+}
+
+p {
+    font-size: px-to-rem(14px);
+}

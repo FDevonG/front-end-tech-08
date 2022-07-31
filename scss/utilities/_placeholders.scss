@@ -1,0 +1,18 @@
+%roundy{
+    border-radius: 50%;
+}
+
+%hover-animation {
+    transition: box-shadow, transform;
+    transition-duration: $transition-duration;
+    transition-timing-function: ease-in-out;
+}
+
+%hover {
+    box-shadow: 3px 3px 5px $grey;
+    transform: scale(1.05);
+}
+
+.hidden{
+    display:none;
+}

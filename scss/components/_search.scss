@@ -1,0 +1,45 @@
+.search-bar{
+    @include flexy($dir: column, $just: space-between, $ali: center);
+    margin: $gutter;
+    & input {
+        @extend %hover-animation;
+        border-radius: $border-radius-corners;
+        padding: 10px;
+        width: 100%;
+        @include border($grey);
+        &:hover,
+        &:focus{
+            @extend %hover;
+            outline: none;
+        }
+    }
+    @media screen and (min-width: 680px){
+        flex-direction: row;
+    } 
+}
+
+.search{
+    position: relative;
+    margin-top: $gutter;
+    @media screen and (min-width: 680px){
+        margin-top:0;
+        margin-left: $gutter;
+    } 
+    &__results{
+        position: absolute;
+        z-index: 100;
+        left:0;
+        width: 100%;
+        border-radius: $border-radius-corners;
+        @include border($grey);
+        background-color: $white;
+    }
+    &-result{
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color $transition-duration ease-in-out;
+        &:hover{
+            background-color: $grey;
+        }
+    }
+}

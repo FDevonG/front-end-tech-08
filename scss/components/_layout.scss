@@ -1,0 +1,38 @@
+.employee{
+    padding:$gutter;
+    position:relative;
+
+    &__container{
+        max-width: $max-width;
+        margin: auto; 
+    }
+}
+
+.grid{
+    @include gridy($just: space-between);
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: $gutter;
+    margin-top: $gutter;
+    &__item{
+        padding:30px;
+        @include border($grey);
+        border-radius: $border-radius-corners;
+        @include flexy();
+        align-items: center;
+        cursor: pointer;
+        @extend %hover-animation;
+        
+        &:hover{
+            @extend %hover;
+        }
+
+        &__flex{
+            @include flexy($dir:column);
+            margin-left: $gutter;
+
+            & span {
+                margin-top: 10px;
+            }
+        }
+    }
+}

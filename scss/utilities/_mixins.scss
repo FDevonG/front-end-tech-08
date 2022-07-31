@@ -1,0 +1,18 @@
+@mixin gridy($dis: grid, $just: null, $align: null){
+    display: $dis;
+    justify-content: $just;
+    align-content: $align;
+}
+
+@mixin flexy($dis: flex, $dir: null, $just: null, $ali: null, $wrap: null){
+    display: $dis;
+    flex-direction: $dir;
+    justify-content: $just;
+    align-items: $ali;
+    flex-wrap: $wrap;
+}
+
+@mixin border($color,$px: 1px, $line: solid){
+    border: $px $line $color;
+}
+
