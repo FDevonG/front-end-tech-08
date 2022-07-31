@@ -26,7 +26,7 @@ window.onclick = (e) => {
     if (!searchRseultsPanel.classList.contains('hidden') && !e.target.closest('.search')){
         closeSearchResults();
     }
-}
+};
 
 searchField.addEventListener('input', (e) => {
     buildSearchResults(e.target.value);
@@ -92,7 +92,7 @@ function buildEmployeeCard(user, index){
  * closes the modal by removing the fucos and removing the tab index so you cant tab to the  modal
  */
 function closeModal(){
-    modal.blur;
+    modal.blur();
     modal.removeAttribute('tabindex');    
 }
 
@@ -164,33 +164,38 @@ function createPElement(textContent){
     return p;
 }
 
+/**
+ * take a passed string and checks it against the names of the employees looking for a match
+ * 
+ * @param {string} name - the valu passsed for the search field 
+ */
 function buildSearchResults(name){
     searchRseultsPanel.innerHTML = '';
     const gridItems = document.querySelectorAll('.grid__item');
-    // if (name.trim() !== ''){
-        for (let i = 0; i < users.length; i++){
-            const userName = `${users[i].name.first} ${users[i].name.last}`.toLowerCase();
-            if (!userName.includes(name.trim().toLowerCase())) {
-                gridItems[i].style.display = 'none';
-            } else {
-                gridItems[i].removeAttribute('style');
-                if(name.trim() !== ''){
-                    const p = createPElement(`${users[i].name.first} ${users[i].name.last}`);
-                    p.classList.add('search-result');
-                    searchRseultsPanel.appendChild(p);
-                }
+    for (let i = 0; i < users.length; i++){
+        const userName = `${users[i].name.first} ${users[i].name.last}`.toLowerCase();
+        if (!userName.includes(name.trim().toLowerCase())) {
+            gridItems[i].style.display = 'none';
+        } else {
+            gridItems[i].removeAttribute('style');
+            if(name.trim() !== ''){
+                const p = createPElement(`${users[i].name.first} ${users[i].name.last}`);
+                p.classList.add('search-result');
+                searchRseultsPanel.appendChild(p);
             }
         }
-        if(searchRseultsPanel.innerHTML != ''){
-            searchRseultsPanel.classList.remove('hidden');
-        } else {
-            closeSearchResults()
-        }
-    // } else {
-    //     closeSearchResults()
-    // }
+    }
+    if(searchRseultsPanel.innerHTML != ''){
+        searchRseultsPanel.classList.remove('hidden');
+    } else {
+        closeSearchResults();
+    }
+
 }
 
+/**
+ * closes the panels that holds the results from the search field
+ */
 function closeSearchResults(){
     searchRseultsPanel.classList.add('hidden');
     searchRseultsPanel.innerHTML = '';
