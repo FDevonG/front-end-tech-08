@@ -1,26 +1,11 @@
 let users = [];
+
 const modal = document.querySelector('.modal');
 const modalInfo = document.querySelector('.modal__container__info');
 const searchRseultsPanel = document.querySelector('.search__results');
 const searchField = document.querySelector('#search-field');
-const xhr = new XMLHttpRequest();
 
-xhr.onreadystatechange = () => {
-    if(xhr.readyState === 4) {
-        if (xhr.status === 200){
-            const usersReturned = JSON.parse(xhr.responseText);
-            users = usersReturned.results;
-            for(let i = 0; i < users.length; i++){
-                buildEmployeeCard(users[i], i);
-            }
-        } else {
-            alert(xhr.statusText);
-        }
-    } 
-};
-
-xhr.open('GET', 'https://randomuser.me/api/?results=12&nat=us');
-xhr.send();
+let currentUserIndex = 0;
 
 window.onclick = (e) => {
     if (!searchRseultsPanel.classList.contains('hidden') && !e.target.closest('.search')){
@@ -45,7 +30,8 @@ searchRseultsPanel.addEventListener('click', (e) => {
  */
 document.querySelector('.grid').addEventListener('click', (e) => {
     if (e.target.closest('.grid__item')){
-        buildModal(e.target.closest('.grid__item').getAttribute('data-index'));
+        currentUserIndex = parseInt(e.target.closest('.grid__item').getAttribute('data-index'));
+        buildModal(currentUserIndex);
         openModal();
     }
 });
@@ -58,8 +44,32 @@ modal.addEventListener('click', (e) => {
         closeModal();
     } else if (e.target.classList.contains('modal')){
         closeModal();
+    } else if(e.target.closest('.next')){
+        currentUserIndex++;
+        if (currentUserIndex >= users.length)
+            currentUserIndex = 0;
+        buildModal(currentUserIndex);
+    } else if(e.target.closest('.previous')){
+        currentUserIndex--;
+        if (currentUserIndex <= 0)
+            currentUserIndex = users.length - 1;
+        buildModal(currentUserIndex);
     }
 });
+
+getEmployees();
+async function getEmployees(){
+    try {
+        const employeeResponse = await fetch('https://randomuser.me/api/?results=12&nat=us');
+        const employeesJson = await employeeResponse.json();
+        users = employeesJson.results;
+        for(let i = 0; i < users.length; i++){
+            buildEmployeeCard(users[i], i);
+        }
+    } catch(error){
+        alert('an error has occured');
+    }
+}
 
 /**
  * takes a given user and builds the html to disply the information on the page

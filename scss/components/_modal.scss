@@ -27,12 +27,15 @@
         }
 
         &__close {
-            cursor: pointer;
             position: absolute;
             right: $gutter;
             top: $gutter;
             right: $gutter;
+            background-color: $white;
+            border:none;
+            cursor: pointer;
         }
+        
     }
 
     & h2,
@@ -40,4 +43,27 @@
     & hr {
         margin-top: $gutter;
     }
+}
+
+.previous,
+.next{
+    fill: $white;
+    max-width: 50px;
+    max-height: 50px;
+    position: absolute;
+    top:50%;
+    cursor: pointer;
+    transition: fill $transition-duration ease-in-out;
+    :hover{
+        fill: $grey;
+    }
+}
+
+.previous {
+    left: -100px;
+}
+
+.next{
+    right: -100px;
+    transform: rotate(180deg);
 }

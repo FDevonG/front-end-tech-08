@@ -524,18 +524,49 @@ p {
 
 /* line 29, ../../../../../Users/devongillis/Projects/Websites/front-end-tech-08/scss/components/_modal.scss */
 .modal__container__close {
-  cursor: pointer;
   position: absolute;
   right: 20px;
   top: 20px;
   right: 20px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
 }
 
-/* line 38, ../../../../../Users/devongillis/Projects/Websites/front-end-tech-08/scss/components/_modal.scss */
+/* line 41, ../../../../../Users/devongillis/Projects/Websites/front-end-tech-08/scss/components/_modal.scss */
 .modal h2,
 .modal p,
 .modal hr {
   margin-top: 20px;
+}
+
+/* line 48, ../../../../../Users/devongillis/Projects/Websites/front-end-tech-08/scss/components/_modal.scss */
+.previous,
+.next {
+  fill: white;
+  max-width: 50px;
+  max-height: 50px;
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  transition: fill 0.6s ease-in-out;
+}
+
+/* line 57, ../../../../../Users/devongillis/Projects/Websites/front-end-tech-08/scss/components/_modal.scss */
+.previous :hover,
+.next :hover {
+  fill: lightgrey;
+}
+
+/* line 62, ../../../../../Users/devongillis/Projects/Websites/front-end-tech-08/scss/components/_modal.scss */
+.previous {
+  left: -100px;
+}
+
+/* line 66, ../../../../../Users/devongillis/Projects/Websites/front-end-tech-08/scss/components/_modal.scss */
+.next {
+  right: -100px;
+  transform: rotate(180deg);
 }
 
 /* line 1, ../../../../../Users/devongillis/Projects/Websites/front-end-tech-08/scss/components/_search.scss */
