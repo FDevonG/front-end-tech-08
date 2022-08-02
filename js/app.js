@@ -67,7 +67,7 @@ async function getEmployees(){
             buildEmployeeCard(users[i], i);
         }
     } catch(error){
-        alert('an error has occured');
+        alert(`an error has occured, ${error}`);
     }
 }
 
@@ -182,19 +182,19 @@ function createPElement(textContent){
 function buildSearchResults(name){
     searchRseultsPanel.innerHTML = '';
     const gridItems = document.querySelectorAll('.grid__item');
-    for (let i = 0; i < users.length; i++){
-        const userName = `${users[i].name.first} ${users[i].name.last}`.toLowerCase();
+    users.foreach (user => {
+        const userName = `${user.name.first} ${user.name.last}`.toLowerCase();
         if (!userName.includes(name.trim().toLowerCase())) {
             gridItems[i].style.display = 'none';
         } else {
             gridItems[i].removeAttribute('style');
             if(name.trim() !== ''){
-                const p = createPElement(`${users[i].name.first} ${users[i].name.last}`);
+                const p = createPElement(`${user.name.first} ${user.name.last}`);
                 p.classList.add('search-result');
                 searchRseultsPanel.appendChild(p);
             }
         }
-    }
+    })
     if(searchRseultsPanel.innerHTML != ''){
         searchRseultsPanel.classList.remove('hidden');
     } else {
