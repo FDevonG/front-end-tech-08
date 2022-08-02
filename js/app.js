@@ -194,7 +194,7 @@ function buildSearchResults(name){
                 searchRseultsPanel.appendChild(p);
             }
         }
-    })
+    });
     if(searchRseultsPanel.innerHTML != ''){
         searchRseultsPanel.classList.remove('hidden');
     } else {
